@@ -60,6 +60,9 @@
          }
 
          function displayResult(data) {
+
+         if(data === null || data?.length === 0) return;
+
          var table = document.getElementById("resultTable");
 
          table.innerHTML = "";
@@ -97,12 +100,19 @@
              imageCell.appendChild(image);
              row.appendChild(imageCell);
 
-             var preview_imageCell = document.createElement("td");
-             var link = document.createElement("a");
-             link.href = item.preview_url;
-             link.textContent = item.preview_url;
-             preview_imageCell.appendChild(link);
-             row.appendChild(preview_imageCell);
+             if(item.preview_url !== null){
+                var preview_imageCell = document.createElement("td");
+                var link = document.createElement("a");
+                link.href = item.preview_url;
+                link.textContent = item.preview_url;
+                preview_imageCell.appendChild(link);
+                row.appendChild(preview_imageCell);
+             }
+             else{
+                var preview_imageCell = document.createElement("td");
+                preview_imageCell.appendChild(document.createTextNode("The required information from the service was not provided."));
+                row.appendChild(preview_imageCell);
+             }
 
              tbody.appendChild(row);
          });
