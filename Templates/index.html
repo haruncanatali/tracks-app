@@ -6,6 +6,20 @@
       <title>Spotify Tracks App</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <style>
+         #resultTable td:nth-child(1) {
+            width: 150px;
+         }
+         #resultTable td:nth-child(2) {
+            width: 150px;
+         }
+         #resultTable td:nth-child(3) {
+            width: 350px;
+         }
+         #resultTable td:nth-child(2) {
+            width: 150px;
+         }
+      </style>
    </head>
    <body>
       <h3 class="text-center">AloTech Interview Project</h3>
@@ -50,7 +64,7 @@
 
          table.innerHTML = "";
 
-         table.className = 'table table-bordered table-striped';
+         table.className = 'table table-bordered table-striped table-responsive';
 
          var thead = document.createElement("thead");
          var headerRow = document.createElement("tr");
