@@ -1,9 +1,9 @@
-from flask import Flask, render_template, make_response, jsonify, request, redirect
+from flask import Flask, render_template, make_response, jsonify, request
 from http import cookies
+import datetime
 import requests
 import random
 import json
-import datetime
 
 app = Flask(__name__)
 
@@ -75,7 +75,15 @@ def get_access_token_from_cookie():
     cookie_value = request.cookies.get(cookie_key)
     if cookie_value is None:
         cookie_value = get_access_token_from_service()
+        set_access_token_to_cookie(cookie_value)
     return cookie_value
+
+
+def set_access_token_to_cookie(access_token):
+    cookie = cookies.SimpleCookie()
+    expires = datetime.datetime.now() + datetime.timedelta(seconds=3600)
+    cookie["my_cookie_name"] = access_token
+    cookie[cookie_key]["expires"] = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
 
 def get_access_token_from_service():
