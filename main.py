@@ -1,14 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response, request
 import requests
 import random
 import json
-import datetime
 
 app = Flask(__name__)
-
-expires = datetime.datetime.now()
-access_key = ""
-
 
 @app.route('/home')
 def index():
@@ -22,15 +17,13 @@ def get_tracks(genre):
     if artist is None:
         return []
 
+    access_key = get_access_key()
+
     return artist
 
 
 def get_access_key():
-    if datetime.datetime.now() < expires and access_key is not None and len(access_key) != 0:
-        return access_key
-    else:
-        return ""
-    return ""
+
 
 
 def get_artist_from_json_file(genre):
